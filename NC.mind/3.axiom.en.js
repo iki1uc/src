@@ -1,1 +1,0 @@
-export const CONNECT = { lan:true, wlan:true, gate:"WLAN-GATE", wloch:"WLOCH-ROUTE", allxall:"ALLXALL-CONNECT", faces:6, ref:"3×2", scanRoom(r){return{room:r,status:"ROOM-SCAN-OK",ref:3}}, mapPipe(p){return{pipe:p,status:"PIPE-MAP-OK",ref:3}} };
