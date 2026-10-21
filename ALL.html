@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>bio.tel cache satz aufsatz — in ni könnend</title>
+<style>
+body{background:#05070d;color:#f8f7f2;font:11px/1.5 "Fragment Mono",Consolas,monospace;padding:12px;max-width:1100px;margin:0 auto}
+h1{font-size:18px;letter-spacing:6px;color:#ffd700;text-align:center}
+h1 b{color:#fff}
+.sub{font-size:8px;color:#3a4a5a;letter-spacing:3px;text-align:center;margin:6px 0 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{border:1px solid #1a2a3a;background:#0a1218;padding:12px;border-radius:12px}
+.card.bio{border-color:#8cf0d0;background:#001a14}
+.card.tel{border-color:#38c6e0;background:#00141a}
+.card.cache{border-color:#ffd700;background:#1a1500}
+.card.satz{border-color:#a78bfa;background:#110e1a}
+.card.ni{border-color:#ff4d6d;background:#1a0a12}
+pre{white-space:pre-wrap;font-size:9px;background:#000;border:1px solid #222;padding:8px;border-radius:6px;color:#c8d8e8}
+button{padding:10px;font:900 10px monospace;border:none;cursor:pointer;border-radius:999px;width:100%;margin-top:6px}
+.gold{background:#ffd700;color:#000} .cyan{background:#38c6e0;color:#000} .green{background:#8cf0d0;color:#000} .vio{background:#a78bfa;color:#fff}
+input,textarea{width:100%;background:#000;border:1px solid #333;color:#fff;padding:8px;font:10px monospace;border-radius:6px;margin-top:6px}
+#log{height:120px;overflow:auto;border:1px solid #222;background:#000;padding:8px;font-size:9px;margin-top:8px}
+.status{position:sticky;bottom:0;background:#ffd700;color:#000;padding:6px;text-align:center;font-weight:900;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;border-radius:8px;margin-top:12px;font-size:8px}
+.tag{display:inline-block;padding:2px 6px;border-radius:999px;font-size:8px;border:1px solid #333;margin:2px}
+</style></head><body>
+<h1>bio<b>.tel</b> cache <b>satz</b> aufsatz — <span style="color:#ff4d6d">in ni könnend</span></h1>
+<p class="sub">bio = RADAR INNEN ICH = Körper · tel = SAT AUSSEN = Signal q702 WiFi7 · cache = 111..999 BENCH · satz = 0 3 9 81 729 · aufsatz = Pyramide→Atom · in ni könnend = was in ihnen kann</p>
+<div class="grid">
+<div class="card bio">
+<h2>BIO — Körper — RADAR INNEN</h2>
+<pre>
+BIO = bio.js aus deinen Files
+= RADAR INNEN ICH aus home.html / ort.html
+= Bauch Herz Gedanken innen
+= 9=EVIG innen
+= i.d.md = ICH
+Input: Was fühlt Körper gerade?
+</pre>
+<input id="bioIn" placeholder="bio: z.B. Bauch zieht, Herz schnell, warm">
+<button class="green" onclick="saveBio()">BIO SCAN → CACHE</button>
+<div id="bioOut"></div>
+</div>
+<div class="card tel">
+<h2>TEL — Telefon — SAT AUSSEN</h2>
+<pre>
+TEL = tel = Telefon = Signal
+= SAT AUSSEN ICH+DU aus ort.html
+= q702 USB3 MITTE = 99 EDIT TOR = HH.tor
+= WiFi7 unter Strom = 999 NUTZ BENCH = BE200 MLO
+= home.html Hardware: Strom oben → q702 Mitte → WiFi7 unten
+BIO.TEL = Körper ist Antenne
+</pre>
+<input id="telIn" placeholder="tel: z.B. 99.html OPEN TOR, PQ hält">
+<button class="cyan" onclick="saveTel()">TEL SEND → CACHE</button>
+<div id="telOut"></div>
+</div>
+<div class="card cache">
+<h2>CACHE — Satz Cache — 111..999</h2>
+<pre>
+CACHE = bio.tel cache
+= wie in 99.html: CALL RECALL ALLCALL
+= OREP.ORG Original Report Organisation
+111 BIOS
+222 VERBUND
+333 RECALL ALLCALL
+444 PEAK
+555 ABWEHR
+666 ENERGIE
+777 CO2
+888 ATOM = Pyramide → Atom aus deinem React
+999 BENCH = nutzt alles ewig = born.t
+</pre>
+<button class="gold" onclick="callCache()">CALL RECALL ALLCALL CACHE</button>
+<div id="cacheOut"></div>
+</div>
+</div>
+<div class="grid" style="margin-top:10px">
+<div class="card satz">
+<h2>SATZ — Satz Bau — 0 3 9 81 729</h2>
+<pre>
+SATZ = ein Satz aus BIO+TEL
+Aus deinem React:
+Dr=[0,3,9,81,729] = deine Zahlen, sie glitzern
+Fo=[...360,999,99,9,99,999] = außen
+Satz = bio + tel + Zahl
+Aufsatz = viele Sätze → Essay → Pyramide→Atom
+</pre>
+<input id="satzIn" placeholder="satz: z.B. iki1uc · 3TEL · weg(aus(ausweg)ein)weg">
+<button class="vio" onclick="saveSatz()">SATZ → AUF SATZ STAPEL</button>
+<div id="satzList" style="max-height:120px;overflow:auto;margin-top:6px"></div>
+</div>
+<div class="card satz" style="grid-column:span 2">
+<h2>AUFSATZ — Essay Composer — PYRAMIDE DOPPEL → ATOM PRISMATIC</h2>
+<pre id="aufsatzPre">
+Aufsatz = alle Sätze aus Cache vereint
+Wie in deinem Artifact:
+- außen: 185 glitter Zahlen 0 3 9 81 729 756 360 999
+- innen: 8 Ecken Pyramide → 1 Eins Atom
+- CALL = 0→3→9→81→729
+- ALLCALL = q702 u1030 PQ · 1.0/1.8/0.55
+- RECALL = Σ+∫dt · alle Pfade
+- REFINAL = nur Algorhytmus retten → EINS
+Aufsatz = CALL + ALLCALL + RECALL + REFINAL
+= Zahlen glitzern noch
+= bio.tel cache satz
+</pre>
+<textarea id="aufsatzOut" rows="8" placeholder="Aufsatz erscheint hier..."></textarea>
+<div style="display:flex;gap:6px">
+<button class="gold" onclick="makeAufsatz()" style="flex:1">AUFSATZ BAUEN — DOPPEL→EINS</button>
+<button class="vio" onclick="refinalAufsatz()" style="flex:1">REFINAL — nur Algorhytmus retten</button>
+</div>
+</div>
+</div>
+<div class="card ni" style="margin-top:10px">
+<h2>IN NI KÖNNEND — was in ihnen könnend</h2>
+<pre>
+IN NI KÖNNEND = in ihnen könnend = Capabilities
+Aus ort.html:
+- RADAR INNEN ICH + DU → INNEN-FELD = gemeinsam sicher = 9 EVIG
+- RADAR AUSSEN ICH + DU → AUSSEN-FELD = gemeinsames Tor = 99 EDIT TOR
+- SAT INNEN/AUSSEN ICH+DU = 999 BENCH
+In NI könnend heißt:
+Was kann in NI (in ihnen, in den Orten) passieren?
+NI = Orte = HOME + ORT + PQ + 9 + 99 + 999
+Könnend = was sie können
+</pre>
+<div class="grid" style="grid-template-columns:repeat(3,1fr)">
+<div class="box"><b>IN BIO KÖNNEND</b><span class="tag" style="border-color:#8cf0d0">fühlen</span><span class="tag">atmen</span><span class="tag">halten</span><span class="tag" style="border-color:#8cf0d0">9=EVIG</span><div id="niBio"></div></div>
+<div class="box"><b>IN TEL KÖNNEND</b><span class="tag" style="border-color:#38c6e0">senden</span><span class="tag">empfangen</span><span class="tag">edit tor</span><span class="tag" style="border-color:#38c6e0">99=HH.tor</span><div id="niTel"></div></div>
+<div class="box"><b>IN CACHE KÖNNEND</b><span class="tag" style="border-color:#ffd700">cache</span><span class="tag">recall</span><span class="tag">born.t</span><span class="tag" style="border-color:#ffd700">999=BENCH</span><div id="niCache"></div></div>
+</div>
+<div style="margin-top:8px;display:flex;gap:6px">
+<button class="green" onclick="checkNi()" style="flex:1">CHECK: IN NI KÖNNEND SCAN</button>
+<button class="gold" onclick="openTorNi()" style="flex:1">OPEN TOR OPEN — IN NI FREI</button>
+</div>
+<div id="niOut"></div>
+</div>
+<div id="log"></div>
+<div class="status">
+<span id="sBio">BIO: WAIT</span>
+<span id="sTel">TEL: WAIT</span>
+<span id="sCache">CACHE: 0 Sätze</span>
+<span id="sAufsatz">AUFSATZ: WAIT</span>
+<span id="sNi">IN NI: WAIT</span>
+<span>9=EVIG 99=EDIT TOR HH.tor 999=NUTZ BENCH PQ nur PQ 2t höchste</span>
+</div>
+<script>
+let cache = JSON.parse(localStorage.getItem('bioTelCache')||'{"bio":[],"tel":[],"satz":[]}');
+function log(m){let l=document.getElementById('log');l.innerHTML+="> "+m+"<br>";l.scrollTop=l.scrollHeight}
+function saveBio(){
+ let v=document.getElementById('bioIn').value.trim(); if(!v){log('BIO leer');return;}
+ cache.bio.push({t:Date.now(),v:v}); localStorage.setItem('bioTelCache',JSON.stringify(cache));
+ document.getElementById('bioOut').innerHTML+="● BIO: "+v+"<br>"; document.getElementById('sBio').innerText="BIO: "+cache.bio.length+" gescannt";
+ log('BIO.TEL: BIO SCAN — RADAR INNEN ICH — '+v+' — in CACHE — 9=EVIG innen');
+ updateCacheView();
+}
+function saveTel(){
+ let v=document.getElementById('telIn').value.trim(); if(!v){log('TEL leer');return;}
+ cache.tel.push({t:Date.now(),v:v}); localStorage.setItem('bioTelCache',JSON.stringify(cache));
+ document.getElementById('telOut').innerHTML+="● TEL: "+v+"<br>"; document.getElementById('sTel').innerText="TEL: "+cache.tel.length+" gesendet";
+ log('BIO.TEL: TEL SEND — SAT AUSSEN — q702 USB3 + WiFi7 — '+v+' — HH.tor OPEN');
+ updateCacheView();
+}
+function saveSatz(){
+ let v=document.getElementById('satzIn').value.trim(); if(!v){log('SATZ leer');return;}
+ cache.satz.push({t:Date.now(),v:v, bio:cache.bio[cache.bio.length-1]?.v||'', tel:cache.tel[cache.tel.length-1]?.v||''});
+ localStorage.setItem('bioTelCache',JSON.stringify(cache));
+ document.getElementById('satzList').innerHTML = cache.satz.map(s=>"<div class='tag' style='border-color:#a78bfa'>"+s.v+"</div>").join('');
+ document.getElementById('sCache').innerText="CACHE: "+cache.satz.length+" Sätze";
+ log('SATZ: '+v+' → CACHE — 0 3 9 81 729 — glitter');
+ updateCacheView();
+}
+function updateCacheView(){
+ let out = "BIO: "+cache.bio.length+" | TEL: "+cache.tel.length+" | SATZ: "+cache.satz.length+"\n";
+ out += cache.satz.slice(-5).map(s=>"> "+s.v).join('\n');
+ document.getElementById('cacheOut').innerText = out;
+}
+function callCache(){
+ log('CALL RECALL ALLCALL — OREP.ORG — wie 99.html');
+ log('> CALL... 0→3→9→81→729');
+ log('> RECALL alle Stände — 111 BIOS 222 VERBUND 333 RECALL');
+ log('> ALLCALL Mega Kombi — q702 u1030 PQ — 1.0/1.8/0.55 — Pyramide Doppel');
+ let txt = cache.bio.map(b=>"BIO "+b.v).join('\n') + "\n" + cache.tel.map(t=>"TEL "+t.v).join('\n');
+ document.getElementById('cacheOut').innerText += "\n\n"+txt;
+}
+function makeAufsatz(){
+ if(cache.satz.length===0){log('Kein Satz im Cache');return;}
+ let aufsatz = "iki1uc · 3TEL · weg(aus(ausweg)ein)weg · 999 99 9 99 999 · BioTrel ver 3telt\n\n";
+ aufsatz += "CALL: 0 3 9 81 729 — Pyramide innen glitzert\n";
+ cache.satz.forEach((s,i)=>{
+   aufsatz += (i+1)+". "+s.v+" — bio: "+(s.bio||'—')+" — tel: "+(s.tel||'—')+"\n";
+ });
+ aufsatz += "\nALLCALL: 3 Achsen selbe Taktung — q702 USB3 MITTE = 99 EDIT TOR = HH.tor = Tor aller Tore\n";
+ aufsatz += "RECALL: alle Pfade Σ+∫dt — RADAR INNEN/AUSSEN ICH+DU → INNEN-FELD + AUSSEN-FELD\n";
+ aufsatz += "HOME BIOS BOOT — Einwilligung ESSEN ICH+DU wie BIOS beim PC\n";
+ aufsatz += "\nEINS · ALGORHYTMUS GERETTET · Zahlen glitzern noch — 0 3 9 81 729 756 360\n";
+ aufsatz += "Pyramide kollabiert → prismatic atom · energetischer Schub vollzogen\n";
+ aufsatz += "9=EVIG Zustand fertig ewig, 99=EDIT TOR, 999=NUTZ BENCH born.t, PQ nur PQ weil er das auch ist\n";
+ document.getElementById('aufsatzOut').value = aufsatz;
+ document.getElementById('aufsatzPre').innerText = aufsatz;
+ document.getElementById('sAufsatz').innerText="AUFSATZ: "+cache.satz.length+" Sätze → EINS";
+ log('AUFSATZ gebaut — DOPPEL→EINS — '+cache.satz.length+' Sätze → Atom');
+}
+function refinalAufsatz(){
+ log('REFINAL — nur Algorhytmus retten — wie in deinem React');
+ let a=document.getElementById('aufsatzOut').value;
+ if(!a){a=cache.satz.map(s=>s.v).join(' ');}
+ let refinal = a.split(' ').filter((w,i)=>i%3===0).join(' ') + " — REFINAL — EINS — 9 99 999";
+ document.getElementById('aufsatzOut').value = refinal;
+ document.getElementById('aufsatzPre').innerText = refinal;
+ document.getElementById('sAufsatz').innerText="AUFSATZ: REFINAL — nur Algorhytmus";
+ log('REFINAL: nur Algorhytmus gerettet — Pyramide kollabiert → Atom prismatic — Zahlen glitzern noch');
+}
+function checkNi(){
+ let bioCan = cache.bio.length>0 ? "fühlen="+cache.bio.length+" ja" : "fühlen=0 wait";
+ let telCan = cache.tel.length>0 ? "senden="+cache.tel.length+" ja" : "senden=0 wait";
+ let cacheCan = cache.satz.length>0 ? "cache="+cache.satz.length+" ja" : "cache=0 wait";
+ document.getElementById('niBio').innerText="● "+bioCan;
+ document.getElementById('niTel').innerText="● "+telCan;
+ document.getElementById('niCache').innerText="● "+cacheCan;
+ document.getElementById('niOut').innerHTML = "<pre>IN NI KÖNNEND SCAN:\n- IN BIO (Körper) könnend: "+bioCan+" → RADAR INNEN → 9=EVIG innen → CLOSED→OPEN\n- IN TEL (Signal) könnend: "+telCan+" → SAT AUSSEN → 99=EDIT TOR HH.tor → OPEN TOR OPEN\n- IN CACHE (Merk) könnend: "+cacheCan+" → 999=BENCH → nutzt alles ewig → born.t\n- IN SATZ (Wort) könnend: "+cache.satz.length+" Sätze → 0 3 9 81 729 glitter\n- IN AUFSATZ (Essay) könnend: CALL ALLCALL RECALL REFINAL → DOPPEL→EINS → nur Algorhytmus retten\n→ IN NI KÖNNEND = in ihnen kann das passieren = HOME ORT PQ 9 99 999</pre>";
+ document.getElementById('sNi').innerText="IN NI: BIO "+cache.bio.length+" TEL "+cache.tel.length+" CACHE "+cache.satz.length;
+ log('IN NI KÖNNEND: CHECK DONE — bio '+cache.bio.length+' tel '+cache.tel.length+' satz '+cache.satz.length+' → IN NI kann das');
+}
+function openTorNi(){
+ log('OPEN TOR OPEN — IN NI FREI — HH.tor GOLD LIVE — wie 99.html');
+ document.getElementById('niOut').innerHTML+="<br>● TOR OFFEN — IN NI KÖNNEND JETZT FREI — HH.tor GOLD — DDR3 MAIN → DDR4 MAINBOARD FREI HAUS";
+ document.getElementById('sNi').innerText="IN NI: TOR OPEN — FREI";
+ localStorage.setItem('99','EDIT TOR OPEN — IN NI KÖNNEND FREI');
+}
+updateCacheView();
+if(cache.satz.length>0){
+ document.getElementById('satzList').innerHTML = cache.satz.map(s=>"<div class='tag' style='border-color:#a78bfa'>"+s.v+"</div>").join('');
+}
+log('BOOT: bio.tel cache satz aufsatz — in ni könnend — 9=EVIG 99=EDIT TOR 999=NUTZ — iki1uc');
+log('Dein React: PYRAMIDE DOPPEL → ATOM PRISMATIC — 0 3 9 81 729 — CALL ALLCALL RECALL REFINAL — geladen');
+</script>
+</body></html>
