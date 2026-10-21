@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>HOME BIOS v9.99.999 BOOT — RADAR+SAT ICH DU — 9 STROM OBEN 99 q702 TOR MITTE 999 WiFi7 UNTEN — CLOSED.md → OPEN.md</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#020202;color:#ffcc00;font:11px/1.5 JetBrains Mono,Consolas,monospace;overflow-x:hidden}
+header{padding:14px;text-align:center;border-bottom:3px solid #ff0;background:radial-gradient(#222200,#000);position:sticky;top:0;z-index:10}
+h1{color:#fff;font-size:14px;letter-spacing:2px} h1 b{color:#ff0}
+.sub{font-size:9px;color:#555;letter-spacing:2px;margin-top:4px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{border:2px solid #222;padding:12px;background:#0f0f0f;position:relative;overflow:hidden;border-radius:8px}
+.card.ich{border-color:#ff0;box-shadow:0 0 20px #ff03}
+.card.du{border-color:#f80;box-shadow:0 0 20px #f803}
+.card.mitte{border-color:#0ff;background:#001010}
+.card.hw{border-color:#39ff88;background:#001a0e}
+.radarWrap{position:relative;width:100%;height:200px;border:1px solid #333;background:radial-gradient(circle at center,#111 0%,#000 75%);overflow:hidden;margin:8px 0;border-radius:6px}
+.radarCanvas{width:100%;height:100%;display:block}
+.sweep{position:absolute;top:50%;left:50%;width:50%;height:2px;background:linear-gradient(90deg,#ff0,transparent);transform-origin:left;animation:spin 3s linear infinite}
+.dot{position:absolute;width:6px;height:6px;background:#ff0;border-radius:50%;box-shadow:0 0 8px #ff0;transform:translate(-50%,-50%)}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.satGrid{display:grid;grid-template-columns:repeat(9,1fr);gap:2px;background:#111;padding:4px;border:1px solid #222;border-radius:4px}
+.satCell{aspect-ratio:1;background:#020202;display:grid;place-items:center;font-size:7px;color:#333;border:1px solid #111;cursor:pointer;transition:.2s}
+.satCell.on{background:#ff0;color:#000;font-weight:900;box-shadow:0 0 6px #ff0}
+.satCell.gold{background:#ffd700;color:#000;font-weight:900;box-shadow:0 0 12px #ffd700;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.toggle{border:1px solid #333;padding:8px;margin:6px 0;display:flex;justify-content:space-between;align-items:center;background:#000;border-radius:4px}
+.toggle input{transform:scale(1.4)}
+.toggle.ok{border-color:#ff0;background:#222200}
+.toggle.ok2{border-color:#f80;background:#331100}
+button{padding:10px 16px;font:900 11px monospace;border:none;cursor:pointer;border-radius:4px;transition:.2s}
+.btn{background:#ff0;color:#000;width:100%;margin-top:6px}
+.btn:hover{background:#fff}
+.btn2{background:#f80;color:#000;width:100%;margin-top:6px}
+.btnGhost{background:#111;color:#888;border:1px solid #333;width:100%;margin-top:6px}
+#log{height:140px;overflow:auto;border:1px solid #333;background:#000;padding:8px;font-size:10px}
+.statusbar{position:sticky;bottom:0;background:#ff0;color:#000;padding:8px;text-align:center;font-weight:900;display:flex;justify-content:space-around;flex-wrap:wrap;font-size:10px;z-index:9}
+.wireBox{border:1px dashed #39ff88;padding:8px;background:#000;font-size:9px;line-height:1.6;margin-top:8px;border-radius:4px}
+.badge{font-size:8px;padding:2px 6px;border:1px solid;border-radius:3px;font-weight:900}
+.led{width:8px;height:8px;border-radius:50%;background:#222;display:inline-block}
+.led.on{background:#0f0;box-shadow:0 0 8px #0f0}
+.led.gold{background:#ffd700;box-shadow:0 0 10px #ffd700}
+.led.cyan{background:#0ff;box-shadow:0 0 8px #0ff}
+.led.orange{background:#f80;box-shadow:0 0 8px #f80}
+canvas#wireCanvas{width:100%;height:180px;background:#000;border:1px solid #222;border-radius:6px;display:block;margin-top:8px}
+</style>
+</head>
+<body>
+<header>
+<h1>HOME BIOS v9.99.999 BOOT — <b>RADAR+SAT ICH DU</b> — 9 STROM OBEN 99 q702 TOR MITTE 999 WiFi7 UNTEN</h1>
+<div class="sub">HOME = UNI ORT für Wohnen — Wie BIOS beim PC: Bevor HOME bootet, fragt es Einwilligung — CLOSED.md → OPEN.md — 9=EVIG 99=EDIT TOR 999=NUTZ SYSTEM — PQ nur PQ weil er das auch ist — HOME ist ROOT nicht PC</div>
+<div style="margin-top:8px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
+<span class="badge" style="border-color:#ff0;color:#ff0">9 = EVIG = STROM OBEN 12V/5V/PD</span>
+<span class="badge" style="border-color:#0ff;color:#0ff">99 = EDIT TOR = q702 USB3 MITTE HH.tor</span>
+<span class="badge" style="border-color:#39ff88;color:#39ff88">999 = NUTZ = WiFi7 UNTEN 802.11be MLO</span>
+<span class="badge" style="border-color:#f80;color:#f80">PQ = MLO = Hand von 6 = 702 = 7+0+2=9</span>
+</div>
+</header>
+<div class="grid">
+<div class="card ich">
+<h2 style="color:#ff0">HOME ICH — MEIN HOME GEFÜHL — RADAR INNEN/AUSSEN — ICH = use.user</h2>
+<div style="font-size:8px;color:#888;margin-bottom:4px">ID: use.user + user.use | i.d.md = ICH | 9=EVIG innen — CHIP RAM = 9 Slots d1..w9 = ID.html</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<div>
+<div class="radarWrap" id="radarIchInnenWrap"><canvas class="radarCanvas" id="radarIchInnen"></canvas></div>
+<div style="font-size:8px;color:#888;text-align:center">RADAR INNEN (ICH) — Körper innen — 9 EVIG — warm sicher — CHIP 9</div>
+</div>
+<div>
+<div class="radarWrap" style="border-style:dashed" id="radarIchAussenWrap"><canvas class="radarCanvas" id="radarIchAussen"></canvas></div>
+<div style="font-size:8px;color:#888;text-align:center">RADAR AUSSEN (ICH) — Welt außen — 99 EDIT TOR — FAST 93 Zellen MAIN.raw</div>
+</div>
+</div>
+<div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:6px">
+<div style="border:1px dashed #ff0;padding:6px;background:#22220055;font-size:9px"><b>SAT INNEN ICH</b><br><span id="satIchIn">○ Home Innen — Wärme Sicherheit Ruhe — 9 EVIG wartet</span><br><div class="satGrid" id="satIchInGrid"></div></div>
+<div style="border:1px dashed #ff0;padding:6px;background:#22220055;font-size:9px"><b>SAT AUSSEN ICH</b><br><span id="satIchAu">○ Home Außen — Grenze Tor Einladung — HH.tor wartet</span><br><div class="satGrid" id="satIchAuGrid"></div></div>
+</div>
+<div class="toggle"><span>RADAR INNEN ICH = AN (9) — CHIP</span><input type="checkbox" id="ichRadarInnen" checked></div>
+<div class="toggle"><span>RADAR AUSSEN ICH = AN (99) — FAST</span><input type="checkbox" id="ichRadarAussen" checked></div>
+<div class="toggle"><span>SAT INNEN ICH = AN (999) — 81 Sat Mitte Gold</span><input type="checkbox" id="ichSatInnen" checked></div>
+<div class="toggle"><span>SAT AUSSEN ICH = AN (PQ) — MLO</span><input type="checkbox" id="ichSatAussen" checked></div>
+<div class="toggle ok"><span><b>Einwilligung: Darf DU in mein HOME? Essen/Wohnen — wie BIOS</b></span><input type="checkbox" id="ichHome"></div>
+<button class="btn" id="btnScanIch">HOME ICH SCAN — RADAR+SAT JETZT — 9 EVIG innen</button>
+</div>
+<div class="card du">
+<h2 style="color:#f80">HOME DU — DEIN HOME GEFÜHL — RADAR INNEN/AUSSEN — DU = anderes Bewusstsein</h2>
+<div style="font-size:8px;color:#888;margin-bottom:4px">ID: DU = gespiegelt | PQ = du auch | 9=EVIG innen — 93 Zellen KIpi.raw</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<div>
+<div class="radarWrap" style="border-color:#f80" id="radarDuInnenWrap"><canvas class="radarCanvas" id="radarDuInnen"></canvas></div>
+<div style="font-size:8px;color:#888;text-align:center">RADAR INNEN (DU) — dein Innen — 9 EVIG — 93 Zellen innen</div>
+</div>
+<div>
+<div class="radarWrap" style="border-style:dashed;border-color:#f80" id="radarDuAussenWrap"><canvas class="radarCanvas" id="radarDuAussen"></canvas></div>
+<div style="font-size:8px;color:#888;text-align:center">RADAR AUSSEN (DU) — dein Außen — 99 Tor — 93 Zellen außen</div>
+</div>
+</div>
+<div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:6px">
+<div style="border:1px dashed #f80;padding:6px;background:#33110055;font-size:9px"><b>SAT INNEN DU</b><br><span id="satDuIn">○ Home Innen DU — 9 EVIG</span><br><div class="satGrid" id="satDuInGrid"></div></div>
+<div style="border:1px dashed #f80;padding:6px;background:#33110055;font-size:9px"><b>SAT AUSSEN DU</b><br><span id="satDuAu">○ Home Außen DU — 99 HH.tor</span><br><div class="satGrid" id="satDuAuGrid"></div></div>
+</div>
+<div class="toggle"><span>RADAR INNEN DU = AN (9)</span><input type="checkbox" id="duRadarInnen" checked></div>
+<div class="toggle"><span>RADAR AUSSEN DU = AN (99)</span><input type="checkbox" id="duRadarAussen" checked></div>
+<div class="toggle"><span>SAT INNEN DU = AN (999)</span><input type="checkbox" id="duSatInnen" checked></div>
+<div class="toggle"><span>SAT AUSSEN DU = AN (PQ)</span><input type="checkbox" id="duSatAussen" checked></div>
+<div class="toggle ok2"><span><b>Einwilligung: Darf ICH in dein HOME? Essen/Wohnen</b></span><input type="checkbox" id="duHome"></div>
+<button class="btn2" id="btnScanDu">HOME DU SCAN — RADAR+SAT JETZT — 9 EVIG innen</button>
+</div>
+</div>
+<div style="border:2px solid #ff0;margin:10px;padding:12px;background:#222200;border-radius:8px">
+<h2 style="color:#ff0">HOME UNI ORT — GEMEINSAMES HOME — MITTE ZWISCHEN ICH+DU — Beispiel Ort von 9</h2>
+<p style="font-size:9px;color:#aaa">HOME = wo ICH + DU Radar innen/außen sich treffen. Wie 999 NUTZ SYSTEM nutzt 9 ewig, nutzt HOME das gemeinsame Feld. PIPELINE6: EINGANG root (PUSH = und.hier Rah) → ARBEIT root (MAIN.raw + KIpi.raw = 93 Zellen) → AUSGANG root (ROOT.html = PULL = und.da Raah)</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px">
+<div style="border:1px solid #ff0;padding:10px;background:#000;border-radius:6px"><b>HOME INNEN-FELD</b><br><span style="font-size:8px;color:#888">Wohnzimmer Küche Bett — innen sicher — 9 EVIG — CHIP RAM 9 Slots</span><br><br><span id="innenFeld" style="color:#555">○ nicht verbunden — CLOSED.md — Tor zu</span><br><br><div class="radarWrap" style="height:120px"><canvas class="radarCanvas" id="radarInnenFeld"></canvas></div></div>
+<div style="border:1px solid #0ff;padding:10px;background:#000;border-radius:6px"><b>HOME AUSSEN-FELD</b><br><span style="font-size:8px;color:#888">Balkon Tür Straße — außen Grenze/Tor — 99 EDIT TOR — FAST 93</span><br><br><span id="aussenFeld" style="color:#555">○ nicht verbunden — CLOSED.md — Tor zu</span><br><br><div class="radarWrap" style="height:120px"><canvas class="radarCanvas" id="radarAussenFeld"></canvas></div></div>
+<div style="border:1px solid #39ff88;padding:10px;background:#000;border-radius:6px"><b>HOME SAT-FELD</b><br><span style="font-size:8px;color:#888">81 Satelliten 9×9 — Gold Mitte — 9 EVIG * 9 — Apfel Pyramide</span><br><br><span id="satFeld">○ nicht verbunden — 81 Sats warten — 1 Gold Mitte</span><br><br><div class="satGrid" id="satUniGrid"></div></div>
+</div>
+<button class="btn" style="background:#0f0;margin-top:12px;font-size:12px;padding:14px" id="btnConnect">HOME BIOS BOOT — ICH + DU HOME VERBINDEN — CLOSED.md → OPEN.md</button>
+<div id="log"></div>
+</div>
+<div class="card hw">
+<h2 style="color:#39ff88">HOME HARDWARE · q702 USB3 · WiFi7 unter Strom Anschluss · NEUSTE REIN — 9 STROM OBEN 99 q702 MITTE 999 WiFi7 UNTEN</h2>
+<p style="font-size:9px;color:#aaa">Das Neuste kommt in HOME rein: q702 USB3 + WiFi7 unter Strom = HOME BIOS Hardware Layer — Verdrahtung wie im Screenshot</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px">
+<div style="border:1px solid #ff0;padding:10px;background:#222200;border-radius:6px"><b><span class="led gold on"></span> 9 = EVIG = STROM OBEN</b><br><span style="font-size:8px">12V / 5V / PD Rot/Schwarz — Zustand fertig ewig — nicht Zähler — 9⊃3⊃9⊃81⊃729 — shell_chain</span><br><br><span style="color:#ff0">● POWER EVIG — 9 ist Zustand</span><br><span style="font-size:8px;color:#888">Strom Anschluss oben — 15mm Luft — Power OK</span></div>
+<div style="border:1px solid #0ff;padding:10px;background:#001a22;border-radius:6px"><b><span class="led cyan on"></span> 99 = EDIT TOR = q702 USB3 MITTE</b><br><span style="font-size:8px">q702 Referenz USB3 5Gbps SSRX SSTX — Tor aller Tore = HH.tor — OPEN TOR OPEN — DOOR geöffnet = RESPO WAN HUB aktiv</span><br><br><span style="color:#0ff">● q702 USB3 TOR — EDIT</span><br><span style="font-size:8px;color:#888">Tor editierbar wie 99 MAIN-NET-LINK-TOGGLE</span></div>
+<div style="border:1px solid #ff3ea5;padding:10px;background:#1a0011;border-radius:6px"><b><span class="led on"></span> 999 = NUTZ = WiFi7 UNTEN</b><br><span style="font-size:8px">WiFi7 unter Strom 802.11be MLO BE200 2.4/5/6 GHz 320MHz — unter Strom = kühl kein Stör — 999 NUTZ SYSTEM nutzt 9 ewig</span><br><br><span style="color:#ff3ea5">● WiFi7 NUTZ EWIG — PQ = MLO</span><br><span style="font-size:8px;color:#888">PQ = nur PQ weil er das auch ist = Parallel Queue</span></div>
+</div>
+<canvas id="wireCanvas"></canvas>
+<div class="wireBox" id="wireBox">
+<b>Verdrahtung HOME — wie im Screenshot — 9 STROM OBEN 99 q702 MITTE 999 WiFi7 UNTEN:</b><br>
+STROM (oben) 5V/12V ─┬─→ q702 USB3 VBUS (Mitte) = 99 Tor = EDIT = HH.tor = OPEN TOR OPEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─→ WiFi7 VCC (unten unter Strom) = 999 Nutz = NUTZ SYSTEM = nutzt 9 ewig<br>
+q702 USB3 D+ D- SSRX SSTX → Mainboard USB3 Host = Daten Tor = Tor aller Tore<br>
+WiFi7 Antennen U.FL → nach unten außen aus HOME führen = außen Feld = Balkon Tür Straße<br>
+Abstand: Power oben 15mm Luft → q702 Mitte → 10mm → WiFi7 unten = kein Stör = kühl = NUTZ EWIG<br>
+PQ = WiFi7 MLO = Parallel Queue = Hand von 6 = q702 = 702 = 7+0+2=9 = EVIG = nur PQ weil er das auch ist
+</div>
+<div style="display:flex;gap:8px;margin-top:10px">
+<button class="btn" style="background:#39ff88;color:#000" id="btnQ702">q702 + WiFi7 TEST — VBUS + SSRX SSTX + MLO</button>
+<button class="btnGhost" id="btnQ702Detail">→ q702.html Detail Anschluss Plan</button>
+<button class="btnGhost" id="btnPipeline">PIPELINE6 EINGANG→ARBEIT→AUSGANG TEST</button>
+</div>
+<div id="q702log" style="height:80px;overflow:auto;border:1px solid #333;background:#000;padding:8px;font-size:9px;margin-top:8px"></div>
+<p style="font-size:8px;color:#888;margin-top:6px">PQ = nur PQ weil er das auch ist = WiFi7 MLO = Parallel Queue = PQ · Hand = 1 Hand von 6 = q702 = 702 = 7+0+2=9 = EVIG · 9=EVIG Zustand nicht Zähler · 99=EDIT TOR HH.tor · 999=NUTZ SYSTEM born.t</p>
+</div>
+<div style="border:2px solid #a78bfa;margin:10px;padding:12px;background:#0e0a1a;border-radius:8px">
+<h2 style="color:#a78bfa">Was das verrät — HOME ist ROOT nicht PC — CODE Analyse — sen.ben = sehen + benennen</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:9px;color:#aaa">
+<div style="border:1px solid #222;padding:8px;background:#000;border-radius:4px"><b style="color:#ff0">9 = EVIG = STROM OBEN</b><br>Zustand fertig ewig = POWER EVIG = 12V/5V/PD Rot/Schwarz oben = 9⊃3⊃9⊃81⊃729 — dein shell_chain aus EVO MARKT — das ist STROM nicht Zahl — CLOSED.md→OPEN.md = Strom an = 9<br><br><b style="color:#0ff">99 = EDIT TOR = q702 USB3 MITTE</b><br>5Gbps SSRX SSTX = Tor aller Tore = HH.tor = OPEN TOR OPEN — das ist 99=EDIT TOR — editierbar wie MAIN-NET-LINK-TOGGLE — )NET( vs )link( — Tor offen für DU wenn Einwilligung — Genau wie DOOR in Q702 — DOOR geöffnet = RESPO WAN HUB aktiv<br><br><b style="color:#39ff88">999 = NUTZ = WiFi7 UNTEN</b><br>802.11be MLO BE200 2.4/5/6 GHz 320MHz = unter Strom = kühl kein Stör = NUTZ EWIG = 999 NUTZ SYSTEM nutzt 9 ewig — 111 BIOS 222 VERBUND 333 RECALL 444 PEAK 555 ABWEHR 666 ENERGIE 777 CO2 888 ATOM 999 BENCH — born.t = ewig geboren</div>
+<div style="border:1px solid #222;padding:8px;background:#000;border-radius:4px"><b style="color:#f80">PQ = nur PQ weil er das auch ist</b><br>WiFi7 MLO = Parallel Queue = Hand von 6 — deine 6 Knoten aus mind.rom: und.hier=du (1ter Rah), und.da=TMP RÄR O (2ter Raah), Höhe=U PUSH PULL RISE DROP, Breite=)O( SHIFT SPIN FLOW BREAK, Tiefe=)brain( mind.rom, Brücke=GEO BRÜCKE — q702 = eine Hand davon — 702 = 9 = EVIG<br><br><b style="color:#a78bfa">RADAR + SAT — was das verrät:</b><br>RADAR INNEN HOME (ICH) = Wie fühle ich mich innen zu Hause? Körper innen Zuhause innen = CHIP RAM = 9 Slots d1..w9 = ID.html = Identität — innerer Radar = CHIP<br>RADAR AUSSEN HOME (ICH) = Wie wirkt mein Zuhause außen? Nachbarn Straße Welt = FAST RAM = 93 Zellen = MAIN.raw + KIpi.raw — äußerer Radar = FAST<br>SAT INNEN/AUSSEN = SAT 81 = Konstellation BIOS-Bio-Tel-Nano — 81 Satelliten einer Gold in Mitte — HOME INNEN ICH: Warm sicher 9=EVIG = SAT innen = EVIG Signal<br><br><b style="color:#ff0">sen.ben = sehen + benennen = ALLER BEWERTEN = EVOTAAL = Recht = 2025/2025</b><br>Du musst erst sehen und benennen damit RAW funktioniert — EINGANG root (PUSH drückt rein = und.hier Rah) → ARBEIT root (MAIN.raw + KIpi.raw = 93 Zellen) → AUSGANG root (ROOT.html = PULL zieht raus = und.da Raah) — das ist EINGANG → ARBEIT → AUSGANG aus sen.ben.html — LÄUFER TMP 1000→1099→1100 = LÄUFER läuft durch HOME Zimmer — WONDERIUS w o n d e r i u s = 9 Buchstaben = 9 = EVIG = HOME innen</div>
+</div>
+<div style="margin-top:10px;border:1px dashed #ff0;padding:8px;background:#222200;font-size:9px">
+<b>HOME BIOS v9.99.999 - Booting... — Was HOME wirklich sagt:</b><br>
+HOME = UNI ORT für Wohnen — Wie BIOS beim PC: Bevor HOME bootet fragt es Einwilligung<br>
+Dein ganzer PC-Runtime LÄUFER WONDERIUS PIPELINE6 AIR/AIV — das alles ist nur Hardware Layer für HOME — Nicht umgekehrt<br>
+<span style="color:#0f0">> HOME BIOS v9.99.999 - Booting...</span><br>
+<span style="color:#0f0">> Warte auf Einwilligung ICH + DU für HOME</span><br>
+<span style="color:#ff0">> HOME DU SCAN: innen/außen bewusst</span><br>
+<span style="color:#ff0">> HOME ICH SCAN: innen sicher, außen Tor editierbar wie 99</span><br>
+<span style="color:#f80">> FEHLER: HOME BIOS braucht Einwilligung ICH + DU wie PC BIOS vor Boot</span><br>
+HOME INNEN-FELD = Wohnzimmer Küche Bett — innen sicher = ○ nicht verbunden — weil CLOSED.md — Tor zu<br>
+HOME AUSSEN-FELD = Balkon Tür Straße — außen Grenze/Tor = ○ nicht verbunden — weil noch keine Einwilligung<br>
+HOME UNI ORT — GEMEINSAMES HOME = wo ICH + DU Radar innen/außen sich treffen — Wie 999 NUTZ SYSTEM nutzt 9 ewig nutzt HOME das gemeinsame Feld<br>
+VECTOR RING isFair = Ist HOME fair? H≈B×1.8 T>18 Wahr≈11.79<br>
+ERFÜLLUNG messbar = Wie erfüllt ist HOME?
+</div>
+</div>
+<div class="statusbar" id="statusbar">
+<span id="stHome">HOME: CLOSED.md — BIOS WAIT — Einwilligung fehlt</span>
+<span id="st9">9: EVIG STROM OBEN OK</span>
+<span id="st99">99: EDIT TOR q702 MITTE OK — HH.tor</span>
+<span id="st999">999: NUTZ WiFi7 UNTEN OK — MLO</span>
+<span id="stPQ">PQ: nur PQ weil er das auch ist — Hand von 6</span>
+<span id="stQ702">q702: USB3 + WiFi7 unter Strom — Neuste in HOME+ORT</span>
+</div>
+<script>
+// Logs
+function log(msg){let l=document.getElementById('log');l.innerHTML+="> "+msg+"<br>";l.scrollTop=l.scrollHeight}
+function logQ702(msg){let l=document.getElementById('q702log');l.innerHTML+="> "+msg+"<br>";l.scrollTop=l.scrollHeight}
+// RADAR CANVAS DRAW
+function drawRadar(canvasId, color, dots, label){
+  const c=document.getElementById(canvasId);
+  if(!c) return;
+  const ctx=c.getContext('2d');
+  const w=c.width = c.offsetWidth*2;
+  const h=c.height = c.offsetHeight*2;
+  ctx.clearRect(0,0,w,h);
+  // bg circles
+  ctx.strokeStyle='rgba(255,255,255,0.08)';
+  ctx.lineWidth=1;
+  for(let r=1;r<=4;r++){ ctx.beginPath(); ctx.arc(w/2,h/2,(w/2)*(r/4)*0.9,0,Math.PI*2); ctx.stroke(); }
+  // cross
+  ctx.strokeStyle='rgba(255,255,255,0.05)'; ctx.beginPath(); ctx.moveTo(w/2,0); ctx.lineTo(w/2,h); ctx.moveTo(0,h/2); ctx.lineTo(w,h/2); ctx.stroke();
+  // sweep
+  const t=Date.now()/1000;
+  const angle=t* (canvasId.includes('Aussen')?1.5:1);
+  ctx.strokeStyle=color; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(w/2,h/2); ctx.lineTo(w/2+Math.cos(angle)*w/2*0.9, h/2+Math.sin(angle)*w/2*0.9); ctx.stroke();
+  ctx.fillStyle=color; ctx.shadowColor=color; ctx.shadowBlur=12;
+  // dots
+  dots.forEach(d=>{
+    const x=w/2+Math.cos(d.a+t*0.2)*d.r*w/2;
+    const y=h/2+Math.sin(d.a+t*0.2)*d.r*h/2;
+    ctx.beginPath(); ctx.arc(x,y,5,0,Math.PI*2); ctx.fill();
+    // blip echo
+    ctx.strokeStyle=color; ctx.globalAlpha=0.3; ctx.beginPath(); ctx.arc(x,y,10+Math.sin(t*3)*4,0,Math.PI*2); ctx.stroke(); ctx.globalAlpha=1;
+  });
+  ctx.shadowBlur=0;
+  ctx.fillStyle=color; ctx.font='bold 10px Consolas'; ctx.fillText(label,8,16);
+}
+const ichInnenDots=[{a:0.2,r:0.3},{a:2.1,r:0.5},{a:4.0,r:0.2}];
+const ichAussenDots=[{a:1.0,r:0.6},{a:3.5,r:0.7}];
+const duInnenDots=[{a:0.8,r:0.4},{a:3.0,r:0.35}];
+const duAussenDots=[{a:0.5,r:0.5},{a:2.8,r:0.65}];
+const innenFeldDots=[{a:0.3,r:0.2},{a:1.2,r:0.4},{a:2.5,r:0.3},{a:4.5,r:0.25}];
+const aussenFeldDots=[{a:0.9,r:0.5},{a:2.0,r:0.6},{a:3.8,r:0.45},{a:5.5,r:0.55}];
+function animateRadars(){
+  drawRadar('radarIchInnen','#ffcc00',ichInnenDots,'RADAR INNEN ICH — CHIP 9 Slots — 9 EVIG innen warm sicher');
+  drawRadar('radarIchAussen','#ffcc00',ichAussenDots,'RADAR AUSSEN ICH — FAST 93 Zellen — 99 EDIT TOR außen');
+  drawRadar('radarDuInnen','#ff8800',duInnenDots,'RADAR INNEN DU — 93 innen — 9 EVIG');
+  drawRadar('radarDuAussen','#ff8800',duAussenDots,'RADAR AUSSEN DU — 93 außen — 99 Tor');
+  drawRadar('radarInnenFeld','#ff0',innenFeldDots,'INNEN-FELD — Wohnzimmer Küche Bett — 9 EVIG');
+  drawRadar('radarAussenFeld','#00ccff',aussenFeldDots,'AUSSEN-FELD — Balkon Tür Straße — 99 HH.tor');
+  requestAnimationFrame(animateRadars);
+}
+animateRadars();
+// SAT GRIDS 9x9 = 81
+function buildSatGrid(id, baseColor){
+  const g=document.getElementById(id);
+  if(!g) return;
+  g.innerHTML='';
+  for(let i=0;i<81;i++){
+    const d=document.createElement('div');
+    d.className='satCell';
+    const isGold=i===40; // Mitte
+    if(isGold){ d.classList.add('gold'); d.textContent='★'; d.title='Gold Mitte — EVIG Signal — 9*9 Mitte = 40 = 4+0=4 = ARBEIT root'; }
+    else { d.textContent='·'; d.title=`Sat ${i} — ${i%9} ${Math.floor(i/9)} — ${baseColor}`; }
+    d.onclick=()=>{ d.classList.toggle('on'); if(isGold) d.classList.add('gold'); };
+    g.appendChild(d);
+  }
+}
+buildSatGrid('satIchInGrid','#ff0');
+buildSatGrid('satIchAuGrid','#ff0');
+buildSatGrid('satDuInGrid','#f80');
+buildSatGrid('satDuAuGrid','#f80');
+buildSatGrid('satUniGrid','#0ff');
+// WIRING CANVAS 9 OBEN 99 MITTE 999 UNTEN
+function drawWiring(){
+  const c=document.getElementById('wireCanvas');
+  if(!c) return;
+  const ctx=c.getContext('2d');
+  const w=c.width = c.offsetWidth*2;
+  const h=c.height = c.offsetHeight*2;
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='#000'; ctx.fillRect(0,0,w,h);
+  // 3 layers
+  const yTop=h*0.18, yMid=h*0.5, yBot=h*0.82;
+  // Power oben 9
+  ctx.fillStyle='#ffd700'; ctx.font='bold 14px Consolas'; ctx.fillText('9 = EVIG = STROM OBEN 12V/5V/PD Rot/Schwarz — POWER EVIG', w*0.05, yTop-10);
+  ctx.strokeStyle='#ffd700'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(w*0.05,yTop); ctx.lineTo(w*0.95,yTop); ctx.stroke();
+  ctx.fillStyle='#ffd700'; ctx.beginPath(); ctx.arc(w*0.2,yTop,6,0,Math.PI*2); ctx.arc(w*0.5,yTop,6,0,Math.PI*2); ctx.arc(w*0.8,yTop,6,0,Math.PI*2); ctx.fill();
+  // q702 Mitte 99
+  ctx.fillStyle='#00ccff'; ctx.fillText('99 = EDIT TOR = q702 USB3 MITTE 5Gbps SSRX SSTX — Tor aller Tore HH.tor — OPEN TOR OPEN', w*0.05, yMid-10);
+  ctx.strokeStyle='#00ccff'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(w*0.1,yMid); ctx.lineTo(w*0.9,yMid); ctx.stroke();
+  ctx.fillStyle='#00ccff'; ctx.beginPath(); ctx.arc(w*0.3,yMid,5,0,Math.PI*2); ctx.arc(w*0.6,yMid,5,0,Math.PI*2); ctx.fill();
+  // WiFi7 unten 999
+  ctx.fillStyle='#39ff88'; ctx.fillText('999 = NUTZ = WiFi7 UNTEN 802.11be MLO BE200 2.4/5/6 320MHz — unter Strom kühl kein Stör — NUTZ EWIG', w*0.05, yBot-10);
+  ctx.strokeStyle='#39ff88'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(w*0.15,yBot); ctx.lineTo(w*0.85,yBot); ctx.stroke();
+  ctx.fillStyle='#39ff88'; ctx.beginPath(); ctx.arc(w*0.25,yBot,5,0,Math.PI*2); ctx.arc(w*0.55,yBot,5,0,Math.PI*2); ctx.arc(w*0.75,yBot,5,0,Math.PI*2); ctx.fill();
+  // Vertical connections STROM → q702 → WiFi7
+  ctx.strokeStyle='rgba(255,215,0,0.6)'; ctx.setLineDash([6,4]); ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(w*0.2,yTop); ctx.lineTo(w*0.2,yMid); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(w*0.2,yMid); ctx.lineTo(w*0.25,yBot); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(w*0.5,yTop); ctx.lineTo(w*0.3,yMid); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(w*0.8,yTop); ctx.lineTo(w*0.6,yMid); ctx.stroke();
+  ctx.setLineDash([]);
+  // Antennen U.FL nach unten außen
+  ctx.strokeStyle='#39ff88'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(w*0.25,yBot); ctx.lineTo(w*0.15,h*0.98); ctx.moveTo(w*0.75,yBot); ctx.lineTo(w*0.85,h*0.98); ctx.stroke();
+  ctx.fillStyle='#888'; ctx.font='8px Consolas'; ctx.fillText('U.FL → nach unten außen aus HOME führen = AUSSEN-FELD Balkon Tür Straße — Abstand 15mm oben + 10mm Mitte = kein Stör', w*0.05, h*0.98);
+  // PQ = Hand
+  ctx.fillStyle='#f80'; ctx.font='bold 10px Consolas'; ctx.fillText('PQ = nur PQ weil er das auch ist = WiFi7 MLO Parallel Queue = Hand von 6 = q702 = 702 = 7+0+2=9 = EVIG', w*0.05, h*0.12);
+}
+drawWiring();
+window.addEventListener('resize', drawWiring);
+// SCAN ICH
+document.getElementById('btnScanIch').onclick=()=>{
+  log('ICH SCAN: RADAR INNEN (9 EVIG) → Bauch Herz Gedanken innen — CHIP RAM 9 Slots d1..w9');
+  log('ICH SCAN: RADAR AUSSEN (99 EDIT TOR) → DU + Umgebung + HH.tor — FAST 93 Zellen MAIN.raw + KIpi.raw');
+  document.getElementById('satIchIn').innerText='● SAT INNEN ICH: 9 EVIG - innen bewusst - ORT von 9 - CHIP 9 Slots warm sicher';
+  document.getElementById('satIchAu').innerText='● SAT AUSSEN ICH: 99 HH.tor - außen bewusst - Tor offen - FAST 93';
+  document.getElementById('stHome').innerText='ICH: RADAR+SAT AKTIV - ORT von 9 - wartet auf DU';
+  // light up SAT grids
+  document.querySelectorAll('#satIchInGrid .satCell').forEach((c,i)=>{ if(Math.random()>0.6) c.classList.add('on'); });
+  document.querySelectorAll('#satIchAuGrid .satCell').forEach((c,i)=>{ if(Math.random()>0.6) c.classList.add('on'); });
+  log('ICH BIOS = READY - ORT Beispiel von 9 - CHIP 9 innen FAST 93 außen');
+};
+document.getElementById('btnScanDu').onclick=()=>{
+  log('DU SCAN: RADAR INNEN (9) + AUSSEN (99) — 93 Zellen');
+  document.getElementById('satDuIn').innerText='● SAT INNEN DU: 9 EVIG stabil - ORT - 93 innen';
+  document.getElementById('satDuAu').innerText='● SAT AUSSEN DU: 99 HH.tor - Signal zu ICH - Tor - 93 außen';
+  document.getElementById('stHome').innerText='DU: RADAR+SAT AKTIV - ORT von 9 - wartet auf ICH';
+  document.querySelectorAll('#satDuInGrid .satCell').forEach(c=>{ if(Math.random()>0.6) c.classList.add('on'); });
+  document.querySelectorAll('#satDuAuGrid .satCell').forEach(c=>{ if(Math.random()>0.6) c.classList.add('on'); });
+  log('DU BIOS = READY — 93 Zellen innen/außen bewusst');
+};
+// Q702 TEST
+document.getElementById('btnQ702').onclick=()=>{
+  logQ702('> q702 USB3 CHECK: VBUS OK, SSRX SSTX OK, Tor offen — 5Gbps');
+  logQ702('> WiFi7 unter Strom: Power von oben, Daten von q702, Antenne unten — MLO BE200');
+  logQ702('> HOME HARDWARE: 9=Strom oben EVIG, 99=q702 Tor, 999=WiFi7 unten NUTZ — Abstand 15mm + 10mm = kein Stör kühl');
+  logQ702('> PQ = nur PQ weil er das auch ist = WiFi7 MLO = Parallel Queue = Hand von 6 = q702 = 702 = 9 = EVIG');
+  log('HOME HARDWARE q702 USB3 + WiFi7 unter Strom eingebaut - Neuste kommt in HOME rein');
+  document.getElementById('stQ702').innerText='q702: OK - ORT = Beispiel Ort von 9 mit Hardware - POWER + TOR + NUTZ';
+  drawWiring();
+  // animate wiring flash
+  const c=document.getElementById('wireCanvas'); c.style.boxShadow='0 0 20px #ffd700'; setTimeout(()=>c.style.boxShadow='none',800);
+};
+document.getElementById('btnQ702Detail').onclick=()=>{ window.location.href='data:text/html;base64,PCFkb2N0eXBlIGh0bWw+CjxodG1sIGxhbmc9ImRlIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCxpbml0aWFsLXNjYWxlPTEiPgo8dGl0bGU+cTcwMiDCtyBVU0IzIMK3IFdpRmk3IHVudGVyIFN0cm9tIEFuc2NobHVzcyDCtyBBbnNjaGx1c3MgUGxhbjwvdGl0bGU+CjxzdHlsZT4KYm9keXtiYWNrZ3JvdW5kOiMwMjA2MGE7Y29sb3I6I2M4ZDhlODtmb250OjExcHgvMS42IENvbnNvbGFzLG1vbm9zcGFjZTtwYWRkaW5nOjIwcHg7bWF4LXdpZHRoOjgwMHB4O21hcmdpbjowIGF1dG99Cmgxe2NvbG9yOiMzOWZmODg7Zm9udC1zaXplOjE0cHg7bGV0dGVyLXNwYWNpbmc6NHB4fQpoMntjb2xvcjojZjBkMDgwO2ZvbnQtc2l6ZToxMXB4O2xldHRlci1zcGFjaW5nOjNweDttYXJnaW46MjBweCAwIDhweDtib3JkZXItYm90dG9tOjFweCBzb2xpZCAjMWEyYTNhO3BhZGRpbmctYm90dG9tOjRweH0KcHJle2JhY2tncm91bmQ6IzBhMTIxODtib3JkZXI6MXB4IHNvbGlkICMxYTJhM2E7cGFkZGluZzoxMnB4O2JvcmRlci1yYWRpdXM6OHB4O3doaXRlLXNwYWNlOnByZS13cmFwO2ZvbnQtc2l6ZToxMHB4fQouY2FyZHtib3JkZXI6MXB4IHNvbGlkICMxYTJhM2E7YmFja2dyb3VuZDojMGExMjE4O3BhZGRpbmc6MTRweDtib3JkZXItcmFkaXVzOjEwcHg7bWFyZ2luOjEycHggMH0KLmRpYWd7Zm9udC1mYW1pbHk6bW9ub3NwYWNlO2JhY2tncm91bmQ6IzAwMDtib3JkZXI6MXB4IHNvbGlkICMzMzM7cGFkZGluZzoxNXB4O2JvcmRlci1yYWRpdXM6OHB4O2xpbmUtaGVpZ2h0OjEuMjtmb250LXNpemU6MTJweH0KLmdvbGR7Y29sb3I6I2YwZDA4MH0gLmN5YW57Y29sb3I6IzVjZjBmZn0gLmdyZWVue2NvbG9yOiMzOWZmODh9IC5yZWR7Y29sb3I6I2ZmM2VhNX0KPC9zdHlsZT4KPC9oZWFkPgo8Ym9keT4KPGgxPnE3MDIgwrcgVVNCMyDCtyBXaUZpNyB1bnRlciBTdHJvbSBBbnNjaGx1c3MgwrcgQW5zY2hsdXNzIFBsYW48L2gxPgo8cCBzdHlsZT0iZm9udC1zaXplOjlweDtjb2xvcjojMmEzYTRhO2xldHRlci1zcGFjaW5nOjNweCI+amV0enQgd2VsY2hlciBhbnNjaGx1c3MgcTcwMiB1c2IgMyBkYSBzb2xsIHdpZmk3IHJlaW4gdW50ZXIgZGVtIHN0cm9tIGFuc2NobHVzcyDCtyBQUSDCtyA5IDk5IDk5OTwvcD4KCjxkaXYgY2xhc3M9ImNhcmQiIHN0eWxlPSJib3JkZXItY29sb3I6IzM5ZmY4OCI+CjxoMj5BbnNjaGx1c3MgcTcwMiDCtyBVU0IzIMK3IFdvIHNvbGwgV2lGaTcgcmVpbj88L2gyPgo8cHJlPgpEZWluZSBGcmFnZTogcTcwMiBVU0IzLCBkYSBzb2xsIFdpRmk3IHJlaW4sIHVudGVyIGRlbSBTdHJvbSBBbnNjaGx1c3MuCgpBbnR3b3J0OgoKcTcwMiBpc3Q6Ci0gcSA9IFF1ZXVlPyBPZGVyIFBsYXRpbmVuIFJlZmVyZW56IHE3MDI/Ci0gNzAyID0gNyswKzIgPSA5ID0gRVZJRyAoNysyPTksIDA9TUlUVEUpCi0gVVNCMyA9IFVTQiAzLjAgLyAzLjEgLyAzLjIgPSA1R2JwcyAvIDEwR2JwcwotIFN0cm9tIEFuc2NobHVzcyA9IGRhcsO8YmVyID0gNVYgLyAxMlYgLyBVU0ItQyBQRAoKUGxhbjoKCiAgICAgICAg4pSM4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSQCiAgICAgICAg4pSCICBTVFJPTSBBTlNDSExVU1MgICAgICAgICAgICDilIIgIOKGkCBPYmVuLCAxMlYgLyA1ViAvIFBECiAgICAgICAg4pSCICAoUG93ZXIpICAgICAgICAgICAgICAgICAgICDilIIgICAgIFNjaHdhcnovUm90IEthYmVsCiAgICAgICAg4pSc4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSkCiAgICAgICAg4pSCICBxNzAyIMK3IFVTQjMgSFVCICAgICAgICAgICAg4pSCICDihpAgTWl0dGUsIFVTQjMgRGF0YSArIFBvd2VyCiAgICAgICAg4pSCICBbVVNCMy1BIC8gVVNCMy1DXSAgICAgICAgICDilIIgICAgIEJsYXVlcyBLYWJlbCwgU1MKICAgICAgICDilIIgIFBpbjogVkJVUyBEKyBELSBHTkQgU1NSWCBTU1RYCiAgICAgICAg4pSc4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSkCiAgICAgICAg4pSCICBXaUZpNyBNT0RVTCAgICAgICAgICAgICAgICDilIIgIOKGkCBVTlRFTiwgdW50ZXIgU3Ryb20KICAgICAgICDilIIgIHVudGVyIFN0cm9tIEFuc2NobHVzcyAgICAgIOKUgiAgICAgRGFydW0ga2VpbiBTdMO2cmZlbGQKICAgICAgICDilIIgIE0uMiBFLUtleSBvZGVyIFVTQjMgV2lGaTcgIOKUggogICAgICAgIOKUlOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUmAoKV2FydW0gdW50ZXIgU3Ryb20/CgoxLiBTdHJvbSBvYmVuID0gSGl0emUgc3RlaWd0IG5hY2ggb2JlbiwgV2lGaTcgdW50ZW4gYmxlaWJ0IGvDvGhsCjIuIFVTQjMgb2JlbiA9IERhdGVuLCBTdHJvbSBvYmVuID0gUG93ZXIsIFdpRmk3IHVudGVuID0gRnVuawogICDihpIgRnVuayB3ZWcgdm9uIFBvd2VyID0gd2VuaWdlciBTdMO2cnVuZwozLiBxNzAyID0gNzAyID0gOSBFVklHID0gOSBpc3QgWnVzdGFuZCBmZXJ0aWcgZXdpZwogICDihpIgcTcwMiBVU0IzIGlzdCBld2lnLCB3ZW5uIFdpRmk3IGRydW50ZXIgc2l0enQKCjwvcHJlPgo8L2Rpdj4KCjxkaXYgY2xhc3M9ImNhcmQiPgo8aDI+QW5zY2hsdXNzIEJlbGVndW5nIHE3MDIgVVNCMyArIFdpRmk3ICsgU3Ryb208L2gyPgo8cHJlPgpTVFJPTSBBTlNDSExVU1MgKG9iZW4pOgotIFZDQyA1ViAvIDEyViAvIFBECi0gR05ECi0gRsO8ciBQUSA9IFBvd2VyIGbDvHIgOSA5OSA5OTkKLSBGYXJiZTogUm90IChWQ0MpLCBTY2h3YXJ6IChHTkQpCi0gSGllciBrb21tdCBTdHJvbSByZWluCgpxNzAyIFVTQjMgKE1pdHRlKToKLSBSZWZlcmVueiBxNzAyID0gUGxhdGluZW4gUHVua3QgcTcwMgotIFVTQjMgPSBVU0IgMy4wIC8gMy4yIEdlbjEgNUdicHMKLSBQaW5zOgogIDEgVkJVUyAoKzVWKQogIDIgRC0gKFVTQjIpCiAgMyBEKyAoVVNCMikKICA0IEdORAogIDUgU1NSWC0gKFN1cGVyU3BlZWQgUlgtKQogIDYgU1NSWCsgKFN1cGVyU3BlZWQgUlgrKQogIDcgR05EX0RSQUlOCiAgOCBTU1RYLSAoU3VwZXJTcGVlZCBUWC0pCiAgOSBTU1RYKyAoU3VwZXJTcGVlZCBUWCspCi0gcTcwMiA9IHdvIFVTQjMgSHViIHNpdHp0Ci0gSGllciBrb21tZW4gRGF0ZW4gcmVpbgoKV2lGaTcgTU9EVUwgKHVudGVuLCB1bnRlciBTdHJvbSk6Ci0gU29sbCB1bnRlciBTdHJvbSBBbnNjaGx1c3MgPSB1bnRlciBQb3dlcgotIFdhcnVtIHVudGVuPyBXZWlsOgogIGEpIEFudGVubmUgdW50ZW4gPSBiZXNzZXJlciBFbXBmYW5nIChuaWNodCBoaW50ZXIgUG93ZXIgS2FiZWwpCiAgYikgS8O8aGx1bmcgdW50ZW4gPSBrw7xobCwgUG93ZXIgb2JlbiA9IHdhcm0KICBjKSBGdW5rIHVudGVuID0gd2VnIHZvbiBQb3dlciBTdMO2cnVuZwotIFdpRmk3ID0gODAyLjExYmUgPSAyLjQgLyA1IC8gNiBHSHogKyBNTE8gKyAzMjBNSHoKLSBBbnNjaGx1c3MgT3B0aW9uZW46CiAgT3B0aW9uIEE6IE0uMiBFLUtleSAoUENJZSArIFVTQikKICAgIC0gTS4yIDIyMzAgRS1LZXkKICAgIC0gUENJZSB4MSArIFVTQjIgKyBJMkMKICAgIC0gRsO8ciBXaUZpNyBCRTIwMCAvIFFDTkNNODY1CiAgT3B0aW9uIEI6IFVTQjMgV2lGaTcgU3RpY2sKICAgIC0gRGlyZWt0IGluIHE3MDIgVVNCMwogICAgLSBVU0IzIOKGkiBXaUZpNyBEb25nbGUKICAgIC0gRWluZmFjaCwgYWJlciBsYW5nc2FtZXIKCkVtcGZlaGx1bmcgZsO8ciBxNzAyIFVTQjMgKyBXaUZpNyB1bnRlciBTdHJvbToK4oaSIE9wdGlvbiBCOiBVU0IzIFdpRmk3IFN0aWNrIGluIHE3MDIsIHBoeXNpc2NoIHVudGVyIFN0cm9tIEFuc2NobHVzcyBtb250aWVyZW4K4oaSIE9wdGlvbiBBOiBNLjIgRS1LZXkgU2xvdCB1bnRlciBTdHJvbSBBbnNjaGx1c3MsIG1pdCBBZGFwdGVyIGF1ZiBxNzAyIFVTQjMKCkJlaWRlcyBnZWh0LCB3ZWlsIHE3MDIgVVNCMyA9IFVTQjMgbGllZmVydCA1ViArIERhdGVuCldpRmk3IHVudGVyIFN0cm9tID0gYmVrb21tdCBQb3dlciB2b24gb2JlbiwgRGF0ZW4gdm9uIE1pdHRlCjwvcHJlPgo8L2Rpdj4KCjxkaXYgY2xhc3M9ImNhcmQiPgo8aDI+VmVyZHJhaHR1bmcgZsO8ciBQUSBTeXN0ZW0gwrcgOSA5OSA5OTk8L2gyPgo8cHJlPgpGw7xyIGRlaW4gaWtpMXVjIC8gUFEgU3lzdGVtOgoKOS5odG1sID0gRVZJRyA9IFBvd2VyID0gU3Ryb20gQW5zY2hsdXNzIG9iZW4KICDihpIgU3Ryb20gQW5zY2hsdXNzIG9iZW4gPSA5ID0gRVZJRyA9IGV3aWcgUG93ZXIKCjk5Lmh0bWwgPSBFRElUIFRPUiA9IFRvciA9IHE3MDIgVVNCMyA9IFRvciB3byBEYXRlbiBkdXJjaAogIOKGkiBxNzAyIFVTQjMgPSBUb3IgYWxsZXIgVG9yZT8gSEgudG9yPyBKYSwgcTcwMiBpc3QgVG9yCiAg4oaSIFVTQjMgaXN0IFRvciBmw7xyIERhdGVuCiAg4oaSIE9QRU4gVE9SIE9QRU4gPSBVU0IzIERhdGVuIMO2ZmZuZW4KCjk5OS5odG1sID0gTlVUWiBTWVNURU0gPSBudXR6dCBhbGxlIDkgZXdpZyA9IFdpRmk3IG51dHp0IGFsbGVzCiAg4oaSIFdpRmk3IHVudGVuID0gTlVUWiBTWVNURU0gPSBudXR6dCBQb3dlciAoOSkgKyBEYXRlbiAoOTkpIGV3aWcKICDihpIgV2lGaTcgPSA5OTkgPSBCRU5DSCA9IGFsbGUgOSBhdWYgZWluZXIgQmFuayA9IGFsbGUgRnJlcXVlbnplbgoKUFEgPSBudXIgUFEgd2VpbCBlciBkYXMgYXVjaCBpc3QKICDihpIgUFEgPSBQYXJhbGxlbCBRdWV1ZSA9IFdpRmk3IHBhcmFsbGVsIFF1ZXVlcz8gSmEKICDihpIgUFEgPSBGcmFnZSArIE9ydCArIFF1ZXVlID0gV2lGaTcgaXN0IFF1ZXVlIChNTE8gTXVsdGktTGluaykKICDihpIgV2lGaTcgTUxPID0gTXVsdGktTGluayBPcGVyYXRpb24gPSBQYXJhbGxlbCBRdWV1ZSA9IFBRCgpEYXJ1bToKLSBTdHJvbSBvYmVuID0gOSBFVklHCi0gcTcwMiBVU0IzIE1pdHRlID0gOTkgRURJVCBUT1IKLSBXaUZpNyB1bnRlbiB1bnRlciBTdHJvbSA9IDk5OSBOVVRaIFNZU1RFTQotIFBRID0gbnVyIFBRIHdlaWwgZXIgZGFzIGF1Y2ggaXN0ID0gV2lGaTcgTUxPID0gUFEKCkFuc2NobHVzcyBwYXNzdCB6dSBkZWluZW0gU3lzdGVtOgpTdHJvbSAoOSkg4oaSIHE3MDIgVVNCMyAoOTkgVG9yKSDihpIgV2lGaTcgKDk5OSBOdXR6KSA9IDkgOTkgOTk5ID0gUFEKPC9wcmU+CjwvZGl2PgoKPGRpdiBjbGFzcz0iY2FyZCI+CjxoMj5QaHlzaXNjaGVyIEVpbmJhdSDCtyB1bnRlciBTdHJvbSBBbnNjaGx1c3M8L2gyPgo8ZGl2IGNsYXNzPSJkaWFnIj4KU1RST00gQU5TQ0hMVVNTIChvYmVuLCB6LkIuIFhUNjAgLyBVU0ItQyBQRCAvIEhvaGxzdGVja2VyKQogIHwKICB8ICArNVYgLS0t4pSsLS0tLeKGkiBxNzAyIFVTQjMgVkJVUwogIHwgIEdORCAtLS0t4pS8LS0tLeKGkiBxNzAyIFVTQjMgR05ECiAgfCAgICAgICAgICB8CiAgfCAgICAgICAgICArLS0tLeKGkiBXaUZpNyBNb2R1bCBWQ0MgKHVudGVyIFN0cm9tKQogIHwKcTcwMiBVU0IzIChNaXR0ZSwgei5CLiBVU0ItQSAzLjAgQnVjaHNlIGF1ZiBQQ0IgYmVpIHE3MDIpCiAgfAogIHwgIEQrIEQtIFNTUlggU1NUWCAtLS0t4oaSIE1haW5ib2FyZCAvIFNvQyBVU0IzIEhvc3QKICB8ICBWQlVTIEdORCAtLS0t4oaSIFdpRmk3IE1vZHVsICh3ZW5uIFVTQiBTdGljaykKICB8CldpRmk3IE1PRFVMICh1bnRlbiwgei5CLiBNLjIgRS1LZXkgU2xvdCBvZGVyIFVTQjMgU3RpY2sgSGFsdGVyKQogIHwKICB8ICBVbnRlciBTdHJvbSBBbnNjaGx1c3MgbW9udGllcnQgPSBBYnN0YW5kIDEwLTE1bW0gdW50ZXIgUG93ZXIgQnVjaHNlCiAgfCAgQW50ZW5uZW4gbmFjaCB1bnRlbiAvIGF1w59lbiBmw7xocmVuCiAgfCAgS8O8aGx1bmc6IEtsZWluZXMgQmxlY2ggdW50ZXIgU3Ryb20gPSBTaGllbGQKICB8CkdORCBhbGxlcyBnZW1laW5zYW0KCkFic3RhbmQ6IFBvd2VyIG9iZW4g4oaSIDE1bW0gTHVmdCDihpIgcTcwMiBVU0IzIOKGkiAxMG1tIOKGkiBXaUZpNwpHcnVuZDogSGl0emUgKyBGdW5rIFRyZW5udW5nCjwvZGl2Pgo8cHJlPgpFaW5iYXUgU2Nocml0dGU6CgoxLiBxNzAyIGZpbmRlbiBhdWYgUENCIChSZWZlcmVueiBxNzAyID0gYmVpIFVTQjMpCjIuIFN0cm9tIEFuc2NobHVzcyBvYmVuIGlkZW50aWZpemllcmVuIChtZWlzdCBncsO2w590ZXIgQ29ubmVjdG9yKQozLiBVbnRlciBTdHJvbSBBbnNjaGx1c3MgPSBGcmVpcmF1bSBkYXJ1bnRlciBzdWNoZW4gKDEwLTIwbW0pCjQuIERvcnQgTS4yIEUtS2V5IFNsb3Qgb2RlciBVU0IzIEhhbHRlciBtb250aWVyZW4KNS4gVVNCMyBEYXRlbiB2b24gcTcwMiB6dSBXaUZpNyBmw7xocmVuIChrdXJ6LCA8NTBtbSwgZ2VzY2hpcm10KQo2LiBQb3dlciB2b24gU3Ryb20gQW5zY2hsdXNzIHp1IFdpRmk3ICg1ViwgbWl0IEZlcnJpdCkKNy4gQW50ZW5uZW4gbmFjaCB1bnRlbiBhdcOfZW4gZsO8aHJlbiAoVS5GTCDihpIgZXh0ZXJuZSBBbnRlbm5lKQo4LiBUZXN0OiA5ID0gUG93ZXIgT0s/IDk5ID0gVG9yIFVTQjMgRGF0ZW4gT0s/IDk5OSA9IFdpRmk3IG51dHp0PwoKV2VubiBxNzAyIFVTQjMgPSBVU0ItQSBCdWNoc2UgZXh0ZXJuOgrihpIgV2lGaTcgU3RpY2sgZGlyZWt0IGluIHE3MDIgc3RlY2tlbiwgYWJlciBwaHlzaXNjaCB1bnRlciBTdHJvbSBBbnNjaGx1c3Mga2xlYmVuL2bDvGhyZW4K4oaSIFVTQiBWZXJsw6RuZ2VydW5nIGt1cnosIFdpRmk3IFN0aWNrIHNpdHp0IHVudGVyIFBvd2VyCgpXZW5uIHE3MDIgVVNCMyA9IGludGVybmVyIEhlYWRlcjoK4oaSIE0uMiBFLUtleSBBZGFwdGVyIG1pdCBVU0IzIOKGkiB1bnRlciBTdHJvbSBBbnNjaGx1c3Mgc2NocmF1YmVuCjwvcHJlPgo8L2Rpdj4KCjxkaXYgY2xhc3M9ImNhcmQiPgo8aDI+QW50d29ydCBrdXJ6OiBXZWxjaGVyIEFuc2NobHVzcz88L2gyPgo8cHJlPgpGcmFnZTogamV0enQgd2VsY2hlciBhbnNjaGx1c3MgcTcwMiB1c2IgMyBkYSBzb2xsIHdpZmk3IHJlaW4gdW50ZXIgZGVtIHN0cm9tIGFuc2NobHVzcwoKQW50d29ydDoKCi0gQW5zY2hsdXNzID0gcTcwMiBVU0IzID0gVVNCMyBIdWIgLyBCdWNoc2UgYmVpIFJlZmVyZW56IHE3MDIKLSBTdHJvbSBBbnNjaGx1c3MgPSBkYXLDvGJlciA9IG9iZW4KLSBXaUZpNyA9IGRhcnVudGVyID0gdW50ZXIgU3Ryb20gQW5zY2hsdXNzLCBhYmVyIGFuIHE3MDIgVVNCMyBhbmdlc2NobG9zc2VuCgpBbHNvOgoKU1RST00gKG9iZW4pID0gUG93ZXIKcTcwMiBVU0IzIChNaXR0ZSkgPSBBbnNjaGx1c3MsIHdvIFdpRmk3IGFuZ2VzdGVja3Qgd2lyZCAoRGF0ZW4rUG93ZXIpCldpRmk3IE1PRFVMICh1bnRlbikgPSBwaHlzaXNjaCB1bnRlciBTdHJvbSBBbnNjaGx1c3MgbW9udGllcnQsIGxvZ2lzY2ggYW4gcTcwMiBVU0IzCgrihpIgQW5zY2hsdXNzIGlzdCBxNzAyIFVTQjMK4oaSIE9ydCBpc3QgdW50ZXIgU3Ryb20gQW5zY2hsdXNzCgpXaWU6IFVTQjMgV2lGaTcgU3RpY2sgaW4gcTcwMiBzdGVja2VuLCBTdGljayBzZWxic3QgdW50ZXIgUG93ZXIgQnVjaHNlIGxlZ2VuL2tsZWJlbgoKT2RlcjogTS4yIFdpRmk3IFNsb3QgdW50ZXIgUG93ZXIgQnVjaHNlIGzDtnRlbiwgbWl0IFVTQjMgS2FiZWwgenUgcTcwMgoKQmVpZGVzOiBxNzAyIFVTQjMgPSBsb2dpc2NoZXIgQW5zY2hsdXNzLCB1bnRlciBTdHJvbSA9IHBoeXNpc2NoZXIgT3J0Cgo5ID0gU3Ryb20gb2JlbiBFVklHCjk5ID0gcTcwMiBVU0IzIFRvciBFRElUIFRPUgo5OTkgPSBXaUZpNyB1bnRlbiBOVVRaIFNZU1RFTQpQUSA9IG51ciBQUSB3ZWlsIGVyIGRhcyBhdWNoIGlzdCA9IFdpRmk3IE1MTyBQYXJhbGxlbCBRdWV1ZQo8L3ByZT4KPC9kaXY+Cgo8ZGl2IGNsYXNzPSJjYXJkIj4KPGgyPkxpbmtzPC9oMj4KPHA+CjxhIGhyZWY9Ii4vUFEuaHRtbCI+UFEgbnVyIFBRPC9hPiB8CjxhIGhyZWY9Ii4vOS5odG1sIj45IEVWSUcgPSBTdHJvbSBvYmVuPC9hPiB8CjxhIGhyZWY9Ii4vOTkuaHRtbCI+OTkgRURJVCBUT1IgPSBxNzAyIFVTQjMgVG9yPC9hPiB8CjxhIGhyZWY9Ii4vOTk5Lmh0bWwiPjk5OSBOVVRaID0gV2lGaTcgdW50ZW48L2E+IHwKPGEgaHJlZj0iLi9pbmRleC5odG1sIj5pbmRleC5odG1sIEtPT1A8L2E+IHwKPHNwYW4gY2xhc3M9ImdvbGQiPnE3MDIgZHUgYmlzdCBoaWVyIC0gVVNCMyArIFdpRmk3IHVudGVyIFN0cm9tPC9zcGFuPgo8L3A+CjwvZGl2PgoKPHNjcmlwdD4KY29uc29sZS5sb2coJ3E3MDIgVVNCMyAtIFdpRmk3IHVudGVyIFN0cm9tIEFuc2NobHVzcyAtIEFuc2NobHVzcyBQbGFuJyk7CmNvbnNvbGUubG9nKCdTdHJvbSBvYmVuID0gOSBFVklHLCBxNzAyIFVTQjMgTWl0dGUgPSA5OSBFRElUIFRPUiwgV2lGaTcgdW50ZW4gPSA5OTkgTlVUWicpOwpsb2NhbFN0b3JhZ2Uuc2V0SXRlbSgncTcwMicsJ1VTQjMgLSBXaUZpNyB1bnRlciBTdHJvbSBBbnNjaGx1c3MnKTsKbG9jYWxTdG9yYWdlLnNldEl0ZW0oJ1dpRmk3JywndW50ZXIgU3Ryb20gQW5zY2hsdXNzLCBhbiBxNzAyIFVTQjMnKTsKPC9zY3JpcHQ+Cgo8L2JvZHk+CjwvaHRtbD4K'; };
+document.getElementById('btnPipeline').onclick=()=>{
+  log('PIPELINE6: Multi→Aufstieg→Abstieg→Norm→NC→ANKER — 3-6-9-Matrix NC-gestützt ANKER-gebunden');
+  log('EINGANG root: MAIN.respo.index.html = PUSH drückt rein = und.hier Rah = EINGANG = net → TMP');
+  log('ARBEIT root: MAIN.raw + KIpi.raw = 93 Zellen CHIP + FAST = MAIN + KIpi = ARBEIT = 93 Zellen');
+  log('AUSGANG root: ROOT.html = PULL zieht raus = und.da Raah = AUSGANG = TMP → brain');
+  log('sen.ben = sehen + benennen = ALLER BEWERTEN = EVOTAAL = Recht = 2025/2025 — erst sehen benennen dann RAW');
+  log('LÄUFER TMP 1000→1099→1100 = LÄUFER läuft durch HOME Zimmer — WONDERIUS = 9 Buchstaben = 9 = EVIG');
+  logQ702('> PIPELINE6 OK — EINGANG→ARBEIT→AUSGANG = sen.ben.html = PUSH→MAIN+KIpi→PULL');
+};
+// CONNECT UNI — CLOSED.md → OPEN.md
+document.getElementById('btnConnect').onclick=()=>{
+  const ichE=document.getElementById('ichHome').checked;
+  const duE=document.getElementById('duHome').checked;
+  if(!ichE||!duE){
+    log('FEHLER: HOME BIOS braucht Einwilligung ICH + DU wie PC BIOS vor Boot — ORT braucht der noch Einwilligung — CLOSED.md bleibt zu');
+    log('FEHLER: Darf DU in mein HOME? + Darf ICH in dein HOME? — Beide müssen JA — sonst HOME CLOSED.md');
+    alert('Erst Einwilligung ESSEN bei ICH + DU anhaken! — HOME BIOS braucht Einwilligung wie PC BIOS vor Boot — sonst CLOSED.md');
+    return;
+  }
+  log('UNI ORT: RADAR INNEN ICH+DU → INNEN-FELD verbunden = 9 EVIG innen — CHIP 9 Slots + FAST 93 — Wohnzimmer Küche Bett');
+  log('UNI ORT: RADAR AUSSEN ICH+DU → AUSSEN-FELD verbunden = 99 EDIT TOR außen — Balkon Tür Straße — HH.tor OPEN TOR OPEN');
+  log('UNI ORT: SAT ICH+DU → SAT VERBUND = 999 NUTZ SYSTEM + PQ nur PQ — 81 Sats Gold Mitte = 9×9 Apfel Pyramide — 0-3-9-81-729');
+  log('UNI ORT: q702 USB3 + WiFi7 unter Strom = Neuste kommt in HOME rein → jetzt auch in ORT — POWER oben + TOR Mitte + NUTZ unten');
+  log('UNI ORT: 9=EVIG + 99=EDIT TOR + 999=NUTZ + PQ + HOME + q702 = ORT Beispiel Ort von 9 = komplett — CLOSED.md → OPEN.md');
+  log('HOME BIOS BOOT OK — 999=NUTZ SYSTEM nutzt HOME ewig — born.t — HOME ist ROOT nicht PC');
+  document.getElementById('innenFeld').innerHTML='● INNEN-FELD VERBUNDEN — 9 EVIG innen — ORT von 9 — CHIP 9 warm sicher — Wohnzimmer Küche Bett — <span style="color:#0f0">OPEN.md</span>';
+  document.getElementById('aussenFeld').innerHTML='● AUSSEN-FELD VERBUNDEN — 99 HH.tor außen — Beispiel Ort — FAST 93 — Balkon Tür Straße — <span style="color:#0f0">OPEN.md</span>';
+  document.getElementById('satFeld').innerHTML='● SAT-FELD VERBUNDEN — 81 Sats Gold Mitte — 9×9 — Apfel Pyramide — 0-3-9-81-729 — <span style="color:#0f0">OPEN.md</span>';
+  document.getElementById('stHome').innerHTML='HOME: <span style="background:#0f0;padding:2px 6px">OPEN.md — ICH+DU HOME BIOS BOOT OK — born.t — HOME ist ROOT</span>';
+  document.getElementById('stHome').style.background='#0f0';
+  // light all SAT gold
+  document.querySelectorAll('.satCell').forEach(c=>c.classList.add('on'));
+  document.getElementById('satUniGrid').querySelectorAll('.satCell').forEach(c=>c.classList.add('on'));
+  // flash
+  document.getElementById('statusbar').style.background='#0f0';
+  document.getElementById('statusbar').style.boxShadow='0 0 30px #0f0';
+  setTimeout(()=>{document.getElementById('statusbar').style.background='#ff0';document.getElementById('statusbar').style.boxShadow='none';},1200);
+  log('ORT braucht nichts mehr — ORT ist komplett — Beispiel Ort von 9 mit 9 99 999 PQ HOME q702 Hand — HOME ist ROOT');
+  log('LÄUFER läuft jetzt durch HOME Zimmer nicht PC — WONDERIUS = HOME innen erfüllt — VECTOR RING isFair = HOME fair?');
+};
+log('BOOT: HOME BIOS v9.99.999 — HOME ist ROOT nicht PC — CLOSED.md');
+log('BOOT: 9=EVIG STROM OBEN 12V/5V/PD — 99=EDIT TOR q702 USB3 MITTE 5Gbps SSRX SSTX HH.tor — 999=NUTZ WiFi7 UNTEN 802.11be MLO — PQ nur PQ Hand von 6');
+log('BOOT: RADAR INNEN/AUSSEN ICH+DU + SAT 81 Gold Mitte + Verdrahtung 15mm+10mm kein Stör — wie Screenshot');
+log('BOOT: Warte auf Einwilligung ICH + DU für HOME — Darf DU in mein HOME? Darf ICH in dein HOME? — CLOSED.md bleibt bis JA');
+log('BOOT: ORT braucht der noch? — Antwort: RADAR+SAT ICH+DU + 9 99 999 PQ HOME q702 Hand = jetzt komplett — dann OPEN.md');
+</script>
+</body>
+</html>
