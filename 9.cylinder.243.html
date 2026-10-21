@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>VODAAKARTEN PDF SIZER — TIME 3×11</title>
+<style>
+  .toolbar{width:100%;text-align:center;margin:10px 0;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+  .toolbar button,.toolbar label{padding:6px 12px;font-size:14px;background:#0a0e17;color:#8cf0d0;border:1px solid #1e293b;border-radius:6px;cursor:pointer}
+  .scroll-container{width:100%;overflow-x:auto;border:1px solid #444;padding:10px;box-sizing:border-box;touch-action:pan-x pan-y;background:#040a12;border-radius:10px}
+  .zoom-wrapper{transform-origin:top left;transition:transform 0.2s ease}
+  .grid{display:grid;grid-template-columns:repeat(11,80px);grid-template-rows:repeat(3,60px);gap:6px;width:max-content}
+  .cell{border:1px solid #444;display:flex;justify-content:center;align-items:center;font-family:sans-serif;background:#f8f8f8;color:#000;user-select:none;font-size:11px;border-radius:4px;position:relative}
+  .cell.active{outline:3px solid #0077ff;background:rgba(0,120,255,0.15)}
+  .cell.has{border-color:#38c6e0;background:#e6f7ff}
+  .pdf-panel{flex:0 0 360px;background:#0a0e17;border:1px solid #1e293b;border-radius:10px;padding:12px}
+  .slider{display:flex;gap:8px;align-items:center;margin:4px 0;font-size:11px}
+</style>
+</head>
+<body style="margin:0;background:#02060a;color:#e2e8f0;font-family:monospace">
+<div class="toolbar">
+  <button id="zoomIn">Zoom +</button>
+  <button id="zoomOut">Zoom −</button>
+  <button id="zoomReset">Reset</button>
+  <label>PDF laden <input type="file" id="pdfFile" accept="application/pdf" style="display:none"></label>
+  <button id="exportPdf">Export Karten-Liste</button>
+  <span style="font-size:11px">VODAAKARTEN PDF SIZER — 3×11 = 33 = 3*11</span>
+</div>
+<div style="display:flex;gap:12px;padding:0 12px;flex-wrap:wrap">
+  <div class="pdf-panel">
+    <div style="color:#ffd700;font-size:12px">PDF SIZER — W H Gap</div>
+    <div class="slider"><span>W</span><input type="range" id="wSlider" min="40" max="160" value="80"><span id="wVal">80px</span></div>
+    <div class="slider"><span>H</span><input type="range" id="hSlider" min="30" max="120" value="60"><span id="hVal">60px</span></div>
+    <div class="slider"><span>Gap</span><input type="range" id="gapSlider" min="0" max="20" value="6"><span id="gapVal">6px</span></div>
+    <div id="cards" style="display:flex;flex-wrap:wrap;gap:6px;max-height:200px;overflow:auto;margin-top:8px"></div>
+  </div>
+  <div class="scroll-container"><div id="zoomWrapper" class="zoom-wrapper"><div id="grid" class="grid"></div></div></div>
+</div>
+<script>
+let zoom=1;const zw=document.getElementById("zoomWrapper");
+function applyZoom(){zw.style.transform=`scale(${zoom})`;}
+zoomIn.onclick=()=>{zoom=Math.min(zoom+0.1,3);applyZoom();};
+zoomOut.onclick=()=>{zoom=Math.max(zoom-0.1,0.3);applyZoom();};
+zoomReset.onclick=()=>{zoom=1;applyZoom();};
+
+const wSlider=wSliderEl=document.getElementById("wSlider"),hSlider=document.getElementById("hSlider"),gapSlider=document.getElementById("gapSlider");
+const grid=document.getElementById("grid");
+function applySizer(){grid.style.gridTemplateColumns=`repeat(11, ${wSlider.value}px)`;grid.style.gridTemplateRows=`repeat(3, ${hSlider.value}px)`;grid.style.gap=gapSlider.value+"px";document.getElementById("wVal").textContent=wSlider.value+"px";document.getElementById("hVal").textContent=hSlider.value+"px";document.getElementById("gapVal").textContent=gapSlider.value+"px";}
+wSlider.oninput=applySizer;hSlider.oninput=applySizer;gapSlider.oninput=applySizer;
+
+const timeExample=[{pos:[1,4],refs:["M-001"]},{pos:[2,5],refs:["M-017","M-023"],phase:[0.2,0.7]},{pos:[3,2],refs:["M-099"]},{pos:[1,10],refs:["M-777"]}];
+const mask3x11=timeExample.map(s=>({pos:s.pos,refs:s.refs,phase:s.phase||null}));
+let active={r:1,c:1};
+function render3x11(mask){
+ grid.innerHTML="";
+ for(let r=1;r<=3;r++)for(let c=1;c<=11;c++){
+  const cell=document.createElement("div");cell.className="cell";cell.id=`cell-${r}-${c}`;
+  const hit=mask.find(s=>s.pos[0]===r&&s.pos[1]===c);
+  if(hit){cell.classList.add("has");cell.textContent=hit.refs.join(", ");}
+  cell.onclick=()=>{active={r,c};highlightActive();};
+  grid.appendChild(cell);
+ }
+ highlightActive();renderCards(mask);
+}
+function renderCards(mask){
+ const cont=document.getElementById("cards");cont.innerHTML="";
+ mask.forEach(s=>{
+  const d=document.createElement("div");d.style="padding:4px 6px;background:#111a2a;border:1px solid #1e293b;border-radius:4px;font-size:10px;cursor:pointer";
+  d.textContent=`${s.refs.join("/")} @ ${s.pos.join(",")}`;
+  d.onclick=()=>{active={r:s.pos[0],c:s.pos[1]};highlightActive();};
+  cont.appendChild(d);
+ });
+}
+function highlightActive(){
+ document.querySelectorAll(".cell").forEach(c=>c.classList.remove("active"));
+ const el=document.getElementById(`cell-${active.r}-${active.c}`);if(el)el.classList.add("active");
+}
+function move(dir){
+ const rows=3,cols=11;
+ if(dir==="left")active.c=(active.c-2+cols)%cols+1;
+ if(dir==="right")active.c=active.c%cols+1;
+ if(dir==="up")active.r=(active.r-2+rows)%rows+1;
+ if(dir==="down")active.r=active.r%rows+1;
+ highlightActive();
+}
+document.addEventListener("keydown",e=>{
+ if(e.key==="ArrowLeft")move("left");
+ if(e.key==="ArrowRight")move("right");
+ if(e.key==="ArrowUp")move("up");
+ if(e.key==="ArrowDown")move("down");
+});
+let sx=0,sy=0;
+grid.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;});
+grid.addEventListener("touchend",e=>{
+ const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+ if(Math.abs(dx)>Math.abs(dy)){if(dx>20)move("right");if(dx<-20)move("left");}else{if(dy>20)move("down");if(dy<-20)move("up");}
+});
+render3x11(mask3x11);
+document.getElementById("exportPdf").onclick=()=>{
+ const data=mask3x11.map(s=>`${s.pos.join(",")}: ${s.refs.join("/")}`).join("\n");
+ const blob=new Blob([data],{type:"text/plain"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="vodaakarten-3x11.txt";a.click();
+};
+</script>
+</body>
+</html>
